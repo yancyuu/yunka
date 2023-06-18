@@ -1,0 +1,115 @@
+<style>
+    .list-group-item{
+        /*border-top: unset;*/
+        border-left: unset;
+        border-right: unset;
+    }
+    #jiance{
+        text-decoration: none;
+        margin-left: 15px;
+    }
+    #jiance:hover{
+        text-decoration: underline;
+    }
+    .card{
+        height: 100px;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+    
+        <div class="alert" role="alert" style="background: #444c69; color: #fff;">
+            系统版本：v{$version}
+            <a href="javascript:;" id="jiance" data-loading="0">检测版本</a>
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">广告联盟</div>
+            <div class="panel-body" style="padding: 0;">
+                <div class="list-group" style="margin-bottom: 0;">
+                    {volist name="data.advert" id="vo"}
+                    <a href="{$vo.url}" class="list-group-item" target="_blank">{$vo.content}</a>
+                    {/volist}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">官方公告</div>
+            <div class="panel-body" style="padding: 0;">
+                <div class="list-group" style="margin-bottom: 0;">
+                    <a href="javascript:;" class="list-group-item">暂无任何内容</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 col-md-8" style="margin-bottom: 20px;">
+        <div style="background: #fff; padding: 10px 10px 10px 10px;">
+            <div class="fixed-table-toolbar">
+                <div class="bs-bars pull-left">
+                    <div id="toolbar" class="toolbar">
+<!--                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="刷新" data-force-refresh="false"><i class="fa fa-refresh"></i> </a>-->
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn btn-info btn-shijian active" data-type="today">今天</a>
+                            <a href="javascript:;" class="btn btn-info btn-shijian" data-type="zuotian">昨天</a>
+                            <a href="javascript:;" class="btn btn-info btn-shijian" data-type="7tian">最近7天</a>
+                            <a href="javascript:;" class="btn btn-info btn-shijian" data-type="30tian">最近30天</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="echart" class="btn-refresh" style="height:300px;width:100%;"></div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4">
+<!--        <div style="background: #fff; height: auto;padding-top: 10px;">-->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge" id="add-user">{$tongji.add_user}</span>
+                    新增用户
+                </li>
+                <li class="list-group-item">
+                    <span class="badge" id="order-num">{$tongji._order_num}</span>
+                    订单数量
+                </li>
+                <li class="list-group-item">
+                    <span class="badge" id="order-money">{$tongji._order_money}</span>
+                    订单金额
+                </li>
+                <li class="list-group-item">
+                    <span class="badge" id="cost">{$tongji._cost}</span>
+                    成本支出
+                </li>
+                <li class="list-group-item">
+                    <span class="badge" id="lirun">{$tongji._lirun}</span>
+                    销售利润
+                </li>
+            </ul>
+<!--        </div>-->
+    </div>
+</div>
+
+<input type="hidden" value="{$new_version}" id="new-version" />
+<script id="upgrade_tpl" type="text/html">
+    <div>
+        <form class="form-horizontal">
+            <fieldset style="text-align: center;" id="upgrade-text">
+                <p style="color: #f75444; font-weight: bold; font-size: 15px;">发现新版本，老版本即刻起停止维护，建议您立即更新！</p>
+                <p style="color: #f75444; font-weight: bold; font-size: 15px;">更新前请先备份网站文件及数据库，避免更新异常导致网站无法访问！</p>
+                <p style="color: #f75444; font-weight: bold; font-size: 15px;">如更新过程出现任何问题，请及时联系官方人员获取免费协助！</p>
+                <div>
+                    {volist name="data.version" id="vo"}
+                    <p>版本号：{$vo.version}</p>
+                    {/volist}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</script>
